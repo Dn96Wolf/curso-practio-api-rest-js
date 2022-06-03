@@ -1,0 +1,19 @@
+{
+  "name": "curso-practio-api-rest",
+  "version": "1.0.0",
+  "description": "Curso practico de consumo de api rest con JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dn96Wolf/curso-practio-api-rest-js.git"
+  },
+  "author": "Danilo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dn96Wolf/curso-practio-api-rest-js/issues"
+  },
+  "homepage": "https://github.com/Dn96Wolf/curso-practio-api-rest-js#readme"
+}
