@@ -73,7 +73,8 @@ const categoriesPage = () => {
 const movieDetailPage = () => {
     console.log('MovieDetails!!');
 
-    headerSection.classList.add('header-container--long');
+    headerSection.classList.add('skeleton-bg');
+    headerSection.classList.add('skeleton-bg-movie');
     // headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.add('header-arrow--white');
@@ -86,8 +87,26 @@ const movieDetailPage = () => {
     genericSection.classList.add('inactive');
     MovieDetailSection.classList.remove('inactive');
 
+
     const [_, movieId] = location.hash.split('=');
-    getMovieById(movieId);
+
+    if (getMovieById(movieId)) {
+        //agregando lo perteneciente al path
+        headerSection.classList.add('header-container--long');
+        headerSection.classList.remove('skeleton-bg');
+        headerSection.classList.remove('skeleton-bg-movie');
+        //quitando el skeleto
+        movieDetailTitle.classList.remove('skeleton-bg');
+        movieDetailTitle.classList.remove('skeleton-textbox');
+
+        movieDetailScore.classList.remove('skeleton-bg');
+        movieDetailScore.classList.remove('skeleton-textbox-mini');
+
+        movieDetailDescription.classList.remove('skeleton-bg');
+        movieDetailDescription.classList.remove('skeleton-textbox-detail');
+    } else {
+        console.log('no es lo mismo, namas te, que ya mamas te')
+    }
 }
 
 const searchPage = () => {
@@ -133,7 +152,7 @@ const trendsPage = () => {
 
 window.addEventListener('DOMContentLoaded',
     navigator,
-        false);
+    false);
 window.addEventListener('DOMContentLoaded', () => {
     navigator;
     window.history.pushState({ loadUrl: window.location.href }, null, '');
@@ -159,5 +178,3 @@ arrowBtn.addEventListener('click', () => {
         window.history.back();
     }
 });
-
-

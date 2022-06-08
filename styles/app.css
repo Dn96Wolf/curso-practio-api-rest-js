@@ -123,8 +123,8 @@ button {
 }
 
 .header-container--long {
-    /* background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg'); */
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+    background-color: gray;
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%); */
     background-size: cover !important;
     height: 480px;
     position: fixed;
@@ -361,4 +361,52 @@ footer {
 /* Navigation */
 .inactive {
     display: none;
+}
+
+/*skeleton clases*/
+
+.skeleton-bg{
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: preloadAnimation;
+    animation-timing-function: linear;
+    background: gray;
+    background: linear-gradient(to right, #eeeeee 10%, #dddddd 33%, #eeeeee 60%);
+    /* display: flex; */
+}
+
+.skeleton-bg-movie{
+       height: 480px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.sekeleton-movie-height{
+    height: 300px;
+    margin-bottom:30px;
+}
+
+.skeleton-textbox{
+    width: 80%;
+    height: 30px;
+}
+
+.skeleton-textbox-mini{
+    width: 30px;
+    height: 30px;
+}
+
+.skeleton-textbox-detail{
+    width: 480px;
+    height: 36.8px;
+}
+
+@keyframes preloadAnimation{
+    0%{
+        background-position: -100px 0;
+    }
+    100%{
+        background-position: 100px 0;
+    }
 }

@@ -24,7 +24,7 @@ const createMovies = (movies, section) => {
 
         //estaria bueno poner algo para cuando la api no trae las imagenes.
         if (movie.poster_path === null) {
-
+            
         } else {
             movieImg.classList.add('movie-img');
             movieImg.setAttribute('alt', movie.title);
@@ -35,7 +35,7 @@ const createMovies = (movies, section) => {
         section.appendChild(movieContainer);
     });
 
-}
+};
 
 const createCategories = (categories, container) => {
     container.innerHTML = "";
@@ -57,12 +57,19 @@ const createCategories = (categories, container) => {
     });
 };
 
+
+//Requests
+
 const getTrendingMoviesPreview = async () => {
     try {
         const { data } = await api(`trending/movie/day`);
         //   const data = await res.json();
         const movies = data.results;
-        createMovies(movies, trendingMoviesPreviewList);
+
+            console.log(movies);
+            createMovies(movies, trendingMoviesPreviewList);
+       
+        // createMovies(movies, trendingMoviesPreviewList);
 
         //  trendingMoviesPreviewList.innerHTML = '';
         //  movies.forEach(movie => {
@@ -210,8 +217,8 @@ const getMovieById = async (movieId) => {
 const getRelatedMoviesId = async (movieId) => {
     try {
         const { data } = await api(`movie/${movieId}/similar`),
-        similarMovies = data.results;
-        createMovies(similarMovies,relatedMoviesContainer);    
+            similarMovies = data.results;
+        createMovies(similarMovies, relatedMoviesContainer);
     } catch (error) {
 
         console.log(`no se obtuvieron respuestas`);

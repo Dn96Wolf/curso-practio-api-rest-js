@@ -1,0 +1,77 @@
+Caché vs memoria.
+
+El Caché es la forma en el que el navegador siempre traera la ultima informacion que consume la api o la que se trendingPreview
+guardada en cache, si alguna vez ya se hizo la solicitud de datos. 
+
+en los navegarodes ya se valida el tiempo en el que los datos se guardan en el cache.
+
+--la Memoization--
+
+ya no es el navegador, si no es guardar los calculos que ya hicimos para no repetirlos. 
+
+ejemplo: el fibonachi
+
+crear un objeto
+preguntar al objeto si ya tiene la informacion
+si si se tiene, entonces la usa. si no, hace el fetch() y guarda la informacion en el objeto.
+
+consideraciones:
+
+    el codigo se guarda hasta que se refresca la pagina, si guardas algo en codigo se borraria al cerrar
+    la pagina.
+    para hacer memorization se debe usar otro metodo.
+
+
+cache vs memorization
+
+    el cambio en el backend es importante porque si en alguno de los datos ya cargados ya 
+    sea en el cache o por medio de la memorization, a menos de que con memorization se recargue la 
+    pagina para volver a hacer la peticion o al limpiar el cache, se tiene que volver a hacer la peticion.
+
+
+Debuggeando Caché y Networking
+
+la pestaña de Networking en el navegador es una herramienta que basicamente muestra los tiempos
+de carga que tienen los recursos de la aplicacion, el html, el css, google fonts, javascript, las API, etx.. 
+ademas que deja guardar un log, desabilitar el cache y tambien permite probar la app como si existieran 
+redes 3G etc.
+
+A demas que estos recursos pueden ser filtrados por tipos. 
+
+fetch/xhr filtra las url de las peticiones de la API que esten relacionadas con la pagina actual. es decir muestra el
+endpoint. 
+
+si le das click derecho a la flechita de recargar te da opciones, una de ellas en vaciar el cache y cargar de manera forzada
+
+al hacer eso, nos aparece el tamaño de los datos y el tiempo en que tardo la API en cargar la solicitud http. Al momento
+de cambiar de pagina en la columna de tamaño puede aparece la leyenda disk cache en vez de un numero. Resulta que los navegadores
+implementan el cache, como se acaba de cargar ya esa peticion, ya no se esta haciendo la solicitud. 
+
+como ya se cargo la info anteriormente, el navegador devuelve esa info. 
+
+---loading spinners vs loading skeletons---
+
+los usuarios odian esperar... si una pagina tarda en cargar de 1 a 3 segundos, la cantidad de usuarios que dejan la pagina
+incrementa 32% ... entonces que no se demore no manchis.
+
+las loading screen
+    reconocible, facil diferenciarla de los tipos de pantallas ya sea de error, de carga o de ...
+
+    hay que hacer que la carga sea tolerable o divertida. (mientras mas rapido cargue mejor).
+    como frontend hay que hacer entretenida la espera.
+
+loadings spinners o loadings animations
+    primero fue la ruedita infinita
+    luego fueron las barras de porcentaje como la de los videojuegos
+        el problema de las apps webs, las barras de porcentaje no son lo mejor, ademas normalmente estan hardcodeadas...
+        ya que no se sabe bien que porcentaje de la data se carga, entonces no hay forma de saber si la API responde
+        con un porcentaje. 
+        en los juegos de consola en teoria si se sabe porque ahi la informacion esta mas controlada.
+
+    los loadings skeletons (pantallas de carga), lo importante es que cumplen con las buenas practicas. Por ejemplo, en youtube
+    aparecen el html como por debajo de donde deveria ir la info, es decir la estructura del contenido de la pagina con cierta animacion.
+    esa estrategia esta muy bien ya que varias de las paginas importantes usan este tipo de loading.
+    
+
+
+
