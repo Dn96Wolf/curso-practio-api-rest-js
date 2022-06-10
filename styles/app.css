@@ -410,3 +410,16 @@ footer {
         background-position: 100px 0;
     }
 }
+
+
+/*estilo imagenes vacias*/
+
+.empty-img{
+    width: 155px;
+    height: 221.7px;
+    color: white;
+    background-color: red;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 26px;
+}

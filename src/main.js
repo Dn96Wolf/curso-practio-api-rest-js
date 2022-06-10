@@ -12,8 +12,20 @@ const api = axios.create({
 const BASE_URL = `https://api.themoviedb.org/3`;
 
 //utils
-const createMovies = (movies, section) => {
+
+const lazyLoader = new IntersectionObserver((entries) =>{
+    entries.forEach((entry) => {
+        // console.log(entry.target.setAttribute);
+        if(entry.isIntersecting === true){
+            const url = entry.target.getAttribute('data-img');
+            entry.target.setAttribute('src', url);
+        };
+    });
+});
+
+const createMovies = (movies, section, lazyLoad = false) => {
     section.innerHTML = "";
+    
     movies.forEach(movie => {
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('movie-container');
@@ -24,15 +36,26 @@ const createMovies = (movies, section) => {
 
         //estaria bueno poner algo para cuando la api no trae las imagenes.
         if (movie.poster_path === null) {
+
+             movieContainer.classList.add('empty-img');
+              const titleText = document.createTextNode(movie.title);
+                     titleText.style = 'color:white;'
+              movieContainer.appendChild(titleText);
+            //  movieImg.appendChild(movieTitle);
             
+        
+
         } else {
             movieImg.classList.add('movie-img');
             movieImg.setAttribute('alt', movie.title);
-            movieImg.setAttribute('src', `https://image.tmdb.org/t/p/w300${movie.poster_path}`);
+            movieImg.setAttribute(
+                 lazyLoad ?'data-img' : 'src',
+                 `https://image.tmdb.org/t/p/w300${movie.poster_path}`);
+            lazyload = true ? lazyLoader.observe(movieImg) : null; 
         };
 
         movieContainer.appendChild(movieImg);
-        section.appendChild(movieContainer);
+        section.appendChild(movieContainer); 
     });
 
 };
@@ -58,17 +81,17 @@ const createCategories = (categories, container) => {
 };
 
 
-//Requests
 
+//Requests
 const getTrendingMoviesPreview = async () => {
     try {
         const { data } = await api(`trending/movie/day`);
         //   const data = await res.json();
         const movies = data.results;
 
-            console.log(movies);
-            createMovies(movies, trendingMoviesPreviewList);
-       
+        console.log(movies);
+        createMovies(movies, trendingMoviesPreviewList, true);
+
         // createMovies(movies, trendingMoviesPreviewList);
 
         //  trendingMoviesPreviewList.innerHTML = '';
@@ -168,7 +191,7 @@ const getMoviesBySearch = async (query) => {
         });
         const movies = data.results;
 
-        createMovies(movies, genericSection);
+        createMovies(movies, genericSection, true);
     } catch (error) {
 
     }
@@ -189,9 +212,7 @@ const getMovieById = async (movieId) => {
     try {
         const { data: movie } = await api(`movie/${movieId}`);
         console.log(movie);
-
         const movieImgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
         // headerSection.style.background = `url(${movieImgUrl})`;
         headerSection.style.background = `
         linear-gradient(
@@ -203,10 +224,8 @@ const getMovieById = async (movieId) => {
         movieDetailTitle.textContent = movie.title;
         movieDetailDescription.textContent = movie.overview;
         movieDetailScore.textContent = movie.vote_average;
-
         createCategories(movie.genres, movieDetailCategoriesList);
         getRelatedMoviesId(movieId);
-
 
     } catch (error) {
 
@@ -224,3 +243,4 @@ const getRelatedMoviesId = async (movieId) => {
         console.log(`no se obtuvieron respuestas`);
     }
 };
+

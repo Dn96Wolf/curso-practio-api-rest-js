@@ -74,4 +74,11 @@ loadings spinners o loadings animations
     
 
 
+--intersection observer--
+
+lazyLoading - carga peresosa, detectar cuales imagenes se alcanzan a ver y si se hace scroll o navegacion
+se vean.
+
+
+
 
