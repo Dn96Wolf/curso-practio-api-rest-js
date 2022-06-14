@@ -1,20 +1,46 @@
 
+let page = 1;
+let maxPage;
+let infinitScroll;
+
+//dado que infinite scroll no esta definida como tal, sucede que cada que se carga la pagina no 
+//no le asigan un valor, es por esto que en la funcion navigator, se borra el evento scroll asignado a nada,
+//y despues se vuelve a re asignar para que cuando cargue el location con el hash de la pagina se active la funcion
+//del scroll infinito.
+window.addEventListener('scroll', infinitScroll, false);
+// trendingMoviesPreviewList.addEventListener('scroll', infinitScroll, false);
+
+//en las funciones de search, categories, etc... se tiene que crear una funcion que consuma la api 
+//de forma paginada.
+
 const navigator = () => {
     console.log({ location });
 
+    if(infinitScroll){
+        window.removeEventListener('scroll', infinitScroll, {passive: false});
+        infinitScroll = undefined;
+    };
+
     if (location.hash.startsWith('#trends')) {
         trendsPage();
+        page;
     } else if (location.hash.startsWith('#search=')) {
         searchPage();
+        page;
     } else if (location.hash.startsWith('#movie=')) {
         movieDetailPage();
     } else if (location.hash.startsWith('#category=')) {
         categoriesPage();
+        page;
     } else {
         homePage();
     }
     window.scrollTo(top);
-}
+
+    if(infinitScroll){
+        window.addEventListener('scroll', infinitScroll, {passive: false});
+    };
+};
 
 const homePage = () => {
     console.log('Home!!');
@@ -68,6 +94,8 @@ const categoriesPage = () => {
     // });
 
     getMoviesByCategory(categoryId);
+
+    infinitScroll = getPaginatedMoviesByCategory;
 }
 
 const movieDetailPage = () => {
@@ -127,6 +155,8 @@ const searchPage = () => {
 
     const [_, query] = location.hash.split('=');
     getMoviesBySearch(query);
+
+    infinitScroll = getPaginatedSearchMovies;
 }
 
 const trendsPage = () => {
@@ -148,18 +178,20 @@ const trendsPage = () => {
     headerCategoryTitle.innerHTML = 'Tendencias';
 
     getTrendingMovies();
+
+    infinitScroll = getPaginatedTrendingMovies;
 }
 
 window.addEventListener('DOMContentLoaded',
     navigator,
     false);
+
 window.addEventListener('DOMContentLoaded', () => {
     navigator;
     window.history.pushState({ loadUrl: window.location.href }, null, '');
 },
     false);
 window.addEventListener('hashchange', navigator, false);
-
 
 searchFormBtn.addEventListener('click', () => {
     location.hash = `#search=${searchFormInput.value}`;

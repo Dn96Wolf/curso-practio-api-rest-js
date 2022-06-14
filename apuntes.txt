@@ -80,5 +80,13 @@ lazyLoading - carga peresosa, detectar cuales imagenes se alcanzan a ver y si se
 se vean.
 
 
+scrollTop devuelve el valor de la posicion donde esta el scroll, si es a inicio de la vista, esta en 0 si esta
+debajo de la pagina estara en la haltura maxima de la pagina.
+
+document.documentElement.clientHeight da el tamaño total de la ventana que puede ver el usuario.
+
+
+
+
 
 
