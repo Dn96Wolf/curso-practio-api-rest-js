@@ -1,3 +1,5 @@
+let languageByDefault = localStorage.getItem('itemLanguage');
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -5,6 +7,7 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
+        'language': languageByDefault,
     },
 });
 
@@ -34,6 +37,7 @@ function likeMovie(movie) {
         console.log('la peli no estaba en el LS');
     }
     localStorage.setItem(`liked_movie`, JSON.stringify(likedMovies));
+    getLikedMovies();
 }
 
 // const BASE_URL = `https://api.themoviedb.org/3`;
@@ -72,7 +76,7 @@ const createMovies = (movies, section, { lazyLoad = false, clean = true } = {}) 
         const listMovies = likedMovieList();
         if (listMovies[movie.id]) {
             movieBtn.classList.add('movie-btn--liked');
-        } 
+        }
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
             likeMovie(movie);
@@ -381,6 +385,38 @@ const getLikedMovies = () => {
     const likedMovies = likedMovieList(),
         likedMoviesArray = Object.values(likedMovies);
     createMovies(likedMoviesArray, likedMoviesListArticle, { lazyLoad: true, clean: true })
-    console.log(likedMovies);
+    // console.log(likedMovies);
 };
 
+const changeLanguage = () => {
+
+    const lang = ['es', 'en', 'fr', 'de', 'ja'];
+
+    lang.forEach(item => {
+        const langContainer = document.createElement('div'),
+            langText = document.createTextNode(item);
+        langContainer.classList.add('languague-item');
+        langContainer.style = 'cursor: pointer';
+
+        langContainer.addEventListener('click', () => {
+            languageByDefault = item;
+            localStorage.setItem('itemLanguage', languageByDefault);
+            location.reload();
+            console.log(languageByDefault);
+        });
+        langOptions.appendChild(langContainer);
+        langContainer.appendChild(langText);
+
+    });
+};
+
+const showLanguages = () => {
+    const switchPanelLang = langOptions.classList.toggle('inactive');
+
+    if (switchPanelLang) {
+        changeLanguage();
+
+    } else {
+        langOptions.innerHTML = '';
+    }
+};

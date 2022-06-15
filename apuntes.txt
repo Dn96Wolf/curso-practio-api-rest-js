@@ -183,5 +183,4 @@ esta funcion retornara el valor de movies despues de la validacion.
 Volviendo a la funcion liked movies, lo que necesitamoes es que ahora si valide si la 
 
 
-
-
+internalizacion -  mostrar dependiendo de la localizacion, el idioma de la app.

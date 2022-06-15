@@ -9,7 +9,10 @@ const headerSection = document.querySelector('#header'),
     categoriesPreviewSection = document.querySelector('#categoriesPreview'),
     genericSection = document.querySelector('#genericList'),
     MovieDetailSection = document.querySelector('#movieDetail'),
-    likedMoviesSection = document.querySelector('#liked');
+    likedMoviesSection = document.querySelector('#liked'),
+    languageSection = document.querySelector('#langPage'),
+    langOptions = document.querySelector('#langOptions');
+
 
 //List & Containers
 

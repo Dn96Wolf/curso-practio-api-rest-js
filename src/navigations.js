@@ -8,10 +8,6 @@ let infinitScroll;
 //y despues se vuelve a re asignar para que cuando cargue el location con el hash de la pagina se active la funcion
 //del scroll infinito.
 window.addEventListener('scroll', infinitScroll, false);
-window.addEventListener('storage', () => {
-    console.log(localStorage)
-    // console.log(JSON.parse(window.localStorage.getItem('liked_movie')))
-});
 // trendingMoviesPreviewList.addEventListener('scroll', infinitScroll, false);
 
 //en las funciones de search, categories, etc... se tiene que crear una funcion que consuma la api 
@@ -61,6 +57,11 @@ const homePage = () => {
     genericSection.classList.add('inactive');
     MovieDetailSection.classList.add('inactive');
 
+    
+    languageSection.innerHTML = languageByDefault;
+
+    languageSection.addEventListener('click', showLanguages);
+    
     // getMovies(`trending/movie/day`, trendingMoviesPreviewList);
     getTrendingMoviesPreview();
     getCategoriesPreview();
