@@ -87,6 +87,101 @@ document.documentElement.clientHeight da el tamaño total de la ventana que pued
 
 
 
+-- local storage vs api real --
+
+mas rapido
+depende del navegador
+independiente de la application
+control completo del frontend
+
+consultas al almacenamiento local...
+
+en el caso del local storage tambien podemos ordenar la info como la queramos guardar.
+
+por otro lado 
+
+no requiere autenticacion, no permite compartir o recuperar la sesion y es cero recomendable
+para datos privados. 
+
+a diferencia del locla storage una API real
+
+es un poco mas lenta en el caso de carga de informacion.
+tiene un control completo del backend
+y requiere autenticacion.
+
+tambien permite compartir o recuperar sesion, ya sea que estes en tu celular o el navegador de tu compu
+no habria problema.
+
+tambien guardar tu info privada en el backend es muchisimo mas seguro. 
+
+
+
+para uitilizar el local storage en la consola, se escribe localStorage y nos devuelve
+un objeto de tipo storage{lenght:0}, lenght es la propiedad del objeto que devuelve la cantidad
+de objetos almacenados en el storage.
+
+los valores tienen que tener valores clave del valor que se van a guardar.
+
+La diferencia del objeto en js con el objeto en localStorage es que se borraran
+
+el meto getItem lee info, setItem guarda y removeItem elimina.
+
+
+el setItem funciona de la siguiente manera:
+
+localStorage.setItem('palabra clave','valor');
+
+si se vuelve a revisar el localStorage la longitud cambia porque ya se tiene un valor guardado.
+
+si se recarga la pagina y se llama de nueva cuenta al localStorage el elemento sigue guardado, por que el 
+almacenamiento es local.
+
+para poder asignar el valor de la variable contenida dentro del storage se tiene que obtener mediante
+el metodo getItem, de tal forma que se puede asignar como sigue:
+
+localStorage.setItem('danilo','Daniel Sanchez Barrera');
+
+const miNombre = localStorage.getItem('danilo');
+
+y al llamara la variable devuelve Daniel Sanchez Barrera... ah perro, esta potente!
+
+cuando se aplica sel set, la llave valor debe siempre ponerse con comillas, de lo contrario dara un error.
+
+
+localStorage, no puede guardar objetos ni arrays, solo valores. (chales ya me habria emocionado jaja)
+
+json.parse y json.stringify. Ayudan a que ahora si se pueda guardar en el local storgae, pero seguramente tendra el mismo problema
+cuando se copian los objetos cuando tienen funciones.
+
+esto se emplea de la siguiente manera:
+
+const obj = {a:"a"};
+
+localStorage.setItem('liked_movies': JSON.stringify(obj));
+
+de esta forma al consultar el local, se entregara un objeto vuelto string.
+
+para acceder al objeto con sus cualidades de objeto se tiene que usar JSON.parse()
+
+JSON.parse(localStorage.getItem('liked_movies')).
+
+
+para guardar las movies favoritas en el localStorage:
+
+en el codigo, lo que hacemos es delcarar una funcion likeMovie que recibe una movie, esta funcion
+servira para agregar o quitar las peliculas a las que se les de like. Para esto necesitamos saber
+si una pelicula ya esta o no en una lista de peliculas. Con apoyo de la funcion likedMoiveList, buscamos
+saber si dentro del local existe la pelicula dentro de la lista. 
+
+Creamos una variable item la cual es igual a lo que tenemos en liked_movies del localStorage
+declaramos una variable movies. Con un condicional validaremos lo que nos devuelve items.
+
+si item existe, entonces movies es igual al lo que existe, si no, movies devolvera un objeto vacio.
+
+esta funcion retornara el valor de movies despues de la validacion.
+
+Volviendo a la funcion liked movies, lo que necesitamoes es que ahora si valide si la 
+
 
 
 
