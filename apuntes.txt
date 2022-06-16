@@ -184,3 +184,20 @@ Volviendo a la funcion liked movies, lo que necesitamoes es que ahora si valide 
 
 
 internalizacion -  mostrar dependiendo de la localizacion, el idioma de la app.
+
+
+deploy
+    las api key en los deploy no se puede asegurar, dado que la api key se usa para el fronten,
+    lo cual es publico y en el inspector de elementos se puede observar la api key que se hace
+    en acada peticion, ademas que si se la agregamos en el repo se tendra que agregar al repositorio.
+
+la api nos da herramientas para saber quien esta aceesando y de alguna manera tener control, como cuantas
+sesion estan abiertas, etc... 
+
+github pages nos permite hacer despliegue de archivos estaticos.
+
+la forma con la que se podria proteger nuestra apikey seria controlando nuestro propio backend.
+
+esta app tiene de por si un backend que la hace funcionar. Git hub pages no permite hacer eso
+pero al parecer hay otros lugares donde si se puede.
+
