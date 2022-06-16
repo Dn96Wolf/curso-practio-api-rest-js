@@ -182,7 +182,8 @@ const trendsPage = () => {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     MovieDetailSection.classList.add('inactive');
-
+    likedMoviesSection.classList.add('inactive');
+    
     headerCategoryTitle.innerHTML = 'Tendencias';
 
     getTrendingMovies();
